@@ -6,7 +6,7 @@ describe("Домашнее задание к занятию 2 Функции", (
     it("[1, 2, 3, -100, 10] => { min: -100, max: 10, avg: `-16.80` }", () => {
       expect(getArrayParams([1, 2, 3, -100, 10])).toEqual({ min: -100, max: 10, avg: -16.80 });
     })
-    it("[5] => { min: 5, max: 5, avg: `5.00` }", () => {
+    it("[5] => { min: 5, max: 5, avg: 6}", () => {
       expect(getArrayParams([5])).toEqual({ min: 5, max: 5, avg: 5.00 });
     })
   })

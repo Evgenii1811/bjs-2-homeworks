@@ -17,7 +17,7 @@
 // так как вам необходимо вернуть число (number), то необходимо дополнительное преобразование значения к числу.
 // Пример
 // getArrayParams([-99, 99, 10]) // { min: -99, max: 99, avg: `3.33` }
-// getArrayParams([1, 2, 3, -100, 10])  // { min: -100, max: 10, avg: `-16.80` }
+
 
 function getArrayParams(arr) {
   let min = Infinity;
@@ -36,30 +36,46 @@ function getArrayParams(arr) {
 avg = parseFloat((sum / arr.length).toFixed(2));
 return { min: min, max: max, avg: avg };
 }
-getArrayParams([-99, 99, 10]) // { min: -99, max: 99, avg: `3.33` }
 
 
 
 
 
 
-// // Задание 2
-// function worker(arr) {
-//   let sum;
+// Zadacha №2
+// Итак, напишем две функции: makeWork(arrOfArr,func) - в наших терминах это мясорубка и worker(arr) - это насадка.
+// Напишите функцию worker которая должна находить сумму элементов массива и возвращать её.
+// Функция makeWork принимает входные данные - массив массивов (мясо) 
+// и функцию worker - это насадка, таким образом makeWork - функция высшего порядка.
+// Затем makeWork применяет полученную функцию worker к каждому из полученных массивов worker(arrOfArr[i]) 
+// вычисляя таким образом сумму элементов.
+// Если сумма больше предыдущего максимума, то меняем максимум
+//  (его следует хранить в отдельной переменной и задавать в начале функции makeWork)
+// Таким образом наша мясорубка не только перемалывает
+// (находит сумму чисел каждого массива) но и возвращает самый жирный кусок (с максимальной суммой)
 
-//   // Ваш код
 
-//   return sum;
-// }
+function worker(arr) {         //насадка
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+  sum = sum + arr[i];
+  }
+  return sum;
+}
 
-// function makeWork(arrOfArr, func) {
-//   let max;
+function makeWork(arrOfArr, func) {   //мясорубка
+  let max = -Infinity;
+  for (let i = 0; i < arrOfArr.length; i++) {
+  let arrSum = func(arrOfArr[i]);
+  if (arrSum > max) {
+    max = arrSum;
+  }
+}
+return max;
+}
 
-//   // Ваш кода
-//   // for ...
-  
-//   return max;
-// }
+
+
 
 // // Задание 3
 // function worker2(arr) {
