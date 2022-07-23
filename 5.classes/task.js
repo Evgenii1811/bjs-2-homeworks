@@ -67,3 +67,32 @@ class FantasticBook extends Book {
     }
 }
 
+//Задача №2. Библиотека
+class Library {
+    constructor (name) {
+        this.name = name;
+        this.books = [];
+    }
+
+    addBook(book) {
+        if (book.state > 30) {
+            return this.books.push(book);
+        }
+        return;
+    }
+
+    findBookBy(type, value) {
+        let searchResult = this.books.find(book => book[type] === value);
+        return (typeof searchResult === 'object') ? searchResult : null; 
+    }
+        
+    giveBookByName(bookName) {
+       let reqBook = this.books.find(book => book.name === bookName);
+       if (typeof reqBook === 'object') {
+            this.books.splice(this.books.indexOf(reqBook), 1);
+            return reqBook;
+       }
+       else return null;
+    }
+     
+}
